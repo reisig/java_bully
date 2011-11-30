@@ -26,8 +26,6 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 
 	private String name;
 	private String leaderName = "";
-	
-	private int clock = 0;
 
 	private int ignoreElection = 0;
 	private boolean heardFromLeader = false;
@@ -47,15 +45,8 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 		while (messagePeriod < silencePeriod) {
 			messagePeriod = (min + (int) (Math.random() * ((max - min) + 1))) * 1000;
 		}
-
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			@Override
-			public void run() {
-				clock++;
-			}
-		}, 0, 1000);
 		
+		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
@@ -68,7 +59,7 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 							try {
 								if (!nodeName.equals(name) && nodeName.compareTo(name) > 0) {
 									ElectionNode otherNode = (ElectionNode) reg.lookup(nodeName);
-									String response = otherNode.startElection(name, clock);
+									String response = otherNode.startElection(name);
 									
 									if (response.length() > 0) {
 										noLeaderFound = false;
@@ -97,7 +88,7 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 						if (noLeaderFound) {
 							try {
 								System.out.println("No leader found, electing myself.");
-								startElection(name, clock);
+								startElection(name);
 								noLeaderFound = false;
 							} catch (DeadNodeException e) {
 								System.out.println("Node Error: " + e.toString());
@@ -164,7 +155,7 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 	 * a new election with itself as the candidate.
 	 */
 	@Override
-	public String startElection(String senderName, int senderClock) throws DeadNodeException {
+	public String startElection(String senderName) throws DeadNodeException {
 		String ret = "";
 		
 		if (ignoreElection > 0) {

@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 public interface ElectionNode extends Remote {
 	
 	// Node methods
-	public String startElection(String senderName, int senderClock) throws RemoteException, DeadNodeException;
+	public String startElection(String senderName) throws RemoteException, DeadNodeException;
 	public void newLeader(String newLeaderName) throws RemoteException;
 	public String recvMsg(String senderName, String msg) throws RemoteException;
 	
