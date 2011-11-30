@@ -1,0 +1,18 @@
+This was an assignment for a distributed systems class to learn
+about Java RMI. Uses a Bully algorithm for leader election and
+has an ElectionDriver which causes the algorithm to have to do
+some more work.
+
+ElectionNode
+- The remote interface which all nodes implement
+
+DeadNodeException
+- An exception which gets thrown if the node has been instructed
+  to ignore some number of elections.
+
+Node
+- The central class which does the leader election
+
+ElectionDriver
+- Makes the leader election a little more interesting by changing
+  the nodes' names and having them ignore some elections.
