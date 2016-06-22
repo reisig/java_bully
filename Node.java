@@ -96,7 +96,7 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 						}
 					} catch (RemoteException e) {
 						System.out.println("Node Error: " + e.toString());
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 				} else if (heardFromLeader)
 					heardFromLeader = false;
@@ -143,7 +143,7 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 			}
 		} catch (RemoteException e) {
 			System.out.println("Node Error: " + e.toString());
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -195,7 +195,7 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 				}
 			} catch (RemoteException e) {
 				System.out.println("Node Error: " + e.toString());
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		
@@ -246,13 +246,13 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 				System.out.println("Ignoring " + ignore + " elections...");
 			} catch(RemoteException e) {
 				System.out.println("Node Error: " + e.toString());
-				e.printStackTrace();
+				//e.printStackTrace();
 			} catch (NotBoundException e) {
 				System.out.println("Node Error: " + e.toString());
-				e.printStackTrace();
+				//e.printStackTrace();
 			} catch (AlreadyBoundException e) {
 				System.out.println("Node Error: " + e.toString());
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 	}
@@ -269,7 +269,7 @@ public class Node extends UnicastRemoteObject implements ElectionNode {
 					reg.bind(name, node);
 				} catch (Exception e) {
 					System.out.println("Node Error: " + e.toString());
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 	}
 
