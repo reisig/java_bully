@@ -34,12 +34,12 @@ public class ElectionDriver {
 							node.makeChaos("Node-" + System.currentTimeMillis(), silence);
 						} catch (NotBoundException e) {
 							System.out.println("Election Driver Error: " + e.toString());
-							e.printStackTrace();
+							//e.printStackTrace();
 						}
 					}
 				} catch (RemoteException e) {
 					System.out.println("Election Driver Error: " + e.toString());
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 		}, delay, period);
